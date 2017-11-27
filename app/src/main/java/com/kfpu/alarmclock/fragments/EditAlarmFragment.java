@@ -136,14 +136,14 @@ public class EditAlarmFragment extends Fragment implements LoaderManager.LoaderC
                 if (day6.isChecked()) days += SATURDAY + ",";
                 if (day7.isChecked()) days += SUNDAY;
                 if (days.equals(""))
-                    Toast.makeText(getContext(), "Выберите дни недели", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Выберите дни недели", Toast.LENGTH_LONG).show();
                 else {
-                    Alarm alarm1 = new Alarm(timePicker.getCurrentHour(), timePicker.getCurrentMinute(), days, alarm.getState());
-                    getContext().getContentResolver().update(AlarmContract.getBaseUri(), AlarmContract.toContentValues(alarm1),
+                    Alarm alarm1 = new Alarm(alarm.getId(), timePicker.getCurrentHour(), timePicker.getCurrentMinute(), days, alarm.getState());
+                    getActivity().getContentResolver().update(AlarmContract.getBaseUri(), AlarmContract.toContentValues(alarm1),
                             AlarmContract.AlarmEntry._ID + "=?", new String[]{String.valueOf(alarm.getId())});
                     updateLists();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("alarm", alarm);
+                    bundle.putSerializable("alarm", alarm1);
                     bundle.putString("code", AlarmLoader.EDIT_ALARM);
                     getLoaderManager().initLoader(1, bundle, EditAlarmFragment.this);
                     getActivity().getFragmentManager().beginTransaction().remove(EditAlarmFragment.this).commit();
@@ -155,9 +155,9 @@ public class EditAlarmFragment extends Fragment implements LoaderManager.LoaderC
             @TargetApi(Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                getContext().getContentResolver().delete(AlarmContract.getBaseUri(), AlarmContract.AlarmEntry._ID + "=?",
+                getActivity().getContentResolver().delete(AlarmContract.getBaseUri(), AlarmContract.AlarmEntry._ID + "=?",
                         new String[]{String.valueOf(alarm.getId())});
-                getContext().getContentResolver().notifyChange(AlarmContract.getBaseUri(), null);
+                getActivity().getContentResolver().notifyChange(AlarmContract.getBaseUri(), null);
                 updateLists();
 
                 Bundle bundle = new Bundle();
@@ -192,7 +192,7 @@ public class EditAlarmFragment extends Fragment implements LoaderManager.LoaderC
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public Loader<Integer> onCreateLoader(int id, Bundle args) {
-        return new AlarmLoader(getContext(), args);
+        return new AlarmLoader(getActivity(), args);
     }
 
     @Override

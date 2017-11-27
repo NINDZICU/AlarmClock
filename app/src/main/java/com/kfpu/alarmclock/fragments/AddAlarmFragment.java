@@ -110,7 +110,7 @@ public class AddAlarmFragment extends Fragment implements LoaderManager.LoaderCa
                 if (day6.isChecked()) days += SATURDAY + ",";
                 if (day7.isChecked()) days += SUNDAY;
                 if (days.equals(""))
-                    Toast.makeText(getContext(), "Выберите дни недели", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Выберите дни недели", Toast.LENGTH_LONG).show();
                 else {
                     Alarm alarm = new Alarm(timePicker.getCurrentHour(), timePicker.getCurrentMinute(), days, "ON");
                     Uri uri =getActivity().getContentResolver().insert(AlarmContract.getBaseUri(), AlarmContract.toContentValues(alarm));
@@ -149,7 +149,7 @@ public class AddAlarmFragment extends Fragment implements LoaderManager.LoaderCa
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public Loader<Integer> onCreateLoader(int id, Bundle args) {
-        return new AlarmLoader(getContext(), args);
+        return new AlarmLoader(getActivity(), args);
     }
 
     @Override

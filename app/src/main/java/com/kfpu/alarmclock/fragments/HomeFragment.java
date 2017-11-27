@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
         addAlarm = view.findViewById(R.id.add_alarm);
         rvAlarms = view.findViewById(R.id.rv_alarms);
         rvAlarms.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new AlarmsRecyclerAdapter(getContext());
+        adapter = new AlarmsRecyclerAdapter(getActivity());
         adapter.setAlarmListener(alarm -> {
             EditAlarmFragment editAlarmFragment = new EditAlarmFragment().newInstance(alarm);
             editAlarmFragment.setParentFragment(HomeFragment.this);
@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public Loader<Integer> onCreateLoader(int id, Bundle args) {
-        return new AlarmLoader(getContext(), args);
+        return new AlarmLoader(getActivity(), args);
     }
 
     @Override

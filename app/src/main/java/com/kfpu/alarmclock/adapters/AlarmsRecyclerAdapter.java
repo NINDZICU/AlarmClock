@@ -116,13 +116,14 @@ public class AlarmsRecyclerAdapter extends RecyclerView.Adapter<AlarmsRecyclerAd
     }
 
     private String convertDate(String dateOfNumbers) {
-        dateOfNumbers = dateOfNumbers.replace("1", "Sunday");
-        dateOfNumbers = dateOfNumbers.replace("2", "Monday");
-        dateOfNumbers = dateOfNumbers.replace("3", "Tuesday");
-        dateOfNumbers = dateOfNumbers.replace("4", "Thursday");
-        dateOfNumbers = dateOfNumbers.replace("5", "Wednesday");
-        dateOfNumbers = dateOfNumbers.replace("6", "Friday");
-        dateOfNumbers = dateOfNumbers.replace("7", "Saturday");
+        dateOfNumbers = dateOfNumbers.replace("1", "Sun");
+        dateOfNumbers = dateOfNumbers.replace("2", "Mon");
+        dateOfNumbers = dateOfNumbers.replace("3", "Tue");
+        dateOfNumbers = dateOfNumbers.replace("4", "Thu");
+        dateOfNumbers = dateOfNumbers.replace("5", "Wed");
+        dateOfNumbers = dateOfNumbers.replace("6", "Fri");
+        dateOfNumbers = dateOfNumbers.replace("7", "Sat");
+        if(dateOfNumbers.endsWith(","))  dateOfNumbers = dateOfNumbers.substring(0, dateOfNumbers.length()-1);
         return dateOfNumbers;
     }
 

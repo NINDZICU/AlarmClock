@@ -7,15 +7,17 @@
 
     <TextView
         android:id="@+id/alarm_time"
+        android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_marginRight="2dp"/>
 
     <TextView
         android:id="@+id/tv_alarm_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="3" />
+        android:gravity="center"
+        android:layout_weight="4" />
 
     <Switch
         android:id="@+id/alarm_switch"
